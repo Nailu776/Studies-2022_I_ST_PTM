@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // Pseudonim gracza
-    private var userNickname = " "
+    private var userNickname = ""
 
     // Te przyciski będą zainicjalizowane onCreate
     private lateinit var play_solo_button : Button
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var ranking_button : Button
     private lateinit var exit_game : Button
 
+    //Wyświetlanie nicku
+    private lateinit var nick_name : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +47,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         exit_game = findViewById(R.id.exit_game)
             exit_game.setOnClickListener(this)
 
+        nick_name = findViewById(R.id.nick_name)
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (userNickname.isNotEmpty()) {
+            nick_name.visibility = View.VISIBLE
+            nick_name.text = resources.getString(R.string.hi,"${userNickname}!")
+        } else {
+            nick_name.visibility = View.INVISIBLE
+        }
+    }
     override fun onClick(v: View?) {
         when(v){
             play_solo_button ->{

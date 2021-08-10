@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Tetris</string>
     <string name="tetris_game">TETRIS GAME</string>
-    <string name="play_button">PLAY</string>
+    <string name="play_button">PLAY SOLO</string>
     <string name="settings_button">SETTINGS</string>
+    <string name="play_versus">PLAY VERSUS</string>
+    <string name="ranking">RANKING</string>
+    <string name="exit">EXIT</string>
 </resources>

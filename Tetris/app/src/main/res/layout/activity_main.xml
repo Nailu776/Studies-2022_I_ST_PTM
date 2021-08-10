@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".MainActivity">
-
     <!-- Kontener na całe menu gry-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/menu_background_color"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="-49dp">
+        android:orientation="vertical">
         <!-- Kontener tytuł gry-->
         <RelativeLayout
             android:id="@+id/topContainer"
@@ -28,19 +27,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <!-- Tło tytułu gry /-->
-            <!-- Tytuł gry  /-->
             <LinearLayout
                 android:id="@+id/topBackground"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/top_background"
                 android:orientation="horizontal">
-
             </LinearLayout>
-
+            <!-- Tytuł gry  /-->
             <TextView
                 android:id="@+id/topText"
                 android:layout_width="wrap_content"
@@ -57,18 +54,39 @@
                 android:gravity="center"
                 android:text="@string/tetris_game"
                 android:textColor="@color/white"
-                android:textSize="65sp" />
+                android:textSize="30sp" />
         </RelativeLayout>
-
+        <!-- Witaj {pseudonim}! -->
+        <TextView
+            android:id="@+id/nick_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:visibility="invisible"/>
+        <!-- Przycisk do rozpoczęcia gry solo-->
         <Button
-            android:id="@+id/play_button"
+            android:id="@+id/play_solo_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:text="@string/play_button"
             app:backgroundTint="@color/menu_buttons_color"/>
-
+        <!-- Przycisk do rozpoczęcia gry wersus -->
+        <Button
+            android:id="@+id/play_versus_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/play_versus"
+            app:backgroundTint="@color/menu_buttons_color"/>
+        <!-- Przycisk ustawień gry -->
         <Button
             android:id="@+id/settings_button"
             android:layout_width="match_parent"
@@ -77,7 +95,23 @@
             android:layout_margin="10dp"
             android:text="@string/settings_button"
             app:backgroundTint="@color/menu_buttons_color"/>
-
+        <!-- Przycisk rankingu gry -->
+        <Button
+            android:id="@+id/ranking_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/ranking"
+            app:backgroundTint="@color/menu_buttons_color"/>
+        <!-- Przycisk wyjścia z gry -->
+        <Button
+            android:id="@+id/exit_game"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/exit"
+            app:backgroundTint="@color/menu_buttons_color"/>
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

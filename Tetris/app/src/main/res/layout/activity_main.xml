@@ -1,117 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Kontener na całe menu gry-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
+    android:background="@color/menu_background_color"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-    <!-- Kontener na całe menu gry-->
-    <LinearLayout
+    <!-- Tytuł gry  /-->
+    <TextView
+        android:id="@+id/topText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/menu_background_color"
-        android:orientation="vertical">
-        <!-- Kontener tytuł gry-->
-        <RelativeLayout
-            android:id="@+id/topContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <!-- Tło tytułu gry /-->
-            <LinearLayout
-                android:id="@+id/topBackground"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/top_background"
-                android:orientation="horizontal">
-            </LinearLayout>
-            <!-- Tytuł gry  /-->
-            <TextView
-                android:id="@+id/topText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/topBackground"
-                android:layout_alignTop="@id/topBackground"
-                android:layout_alignEnd="@id/topBackground"
-                android:layout_alignBottom="@id/topBackground"
-                android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="@string/tetris_game"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-        </RelativeLayout>
-        <!-- Witaj {pseudonim}! -->
-        <TextView
-            android:id="@+id/nick_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:visibility="invisible"/>
-        <!-- Przycisk do rozpoczęcia gry solo-->
-        <Button
-            android:id="@+id/play_solo_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/play_button"
-            app:backgroundTint="@color/menu_buttons_color"/>
-        <!-- Przycisk do rozpoczęcia gry wersus -->
-        <Button
-            android:id="@+id/play_versus_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/play_versus"
-            app:backgroundTint="@color/menu_buttons_color"/>
-        <!-- Przycisk ustawień gry -->
-        <Button
-            android:id="@+id/settings_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/settings_button"
-            app:backgroundTint="@color/menu_buttons_color"/>
-        <!-- Przycisk rankingu gry -->
-        <Button
-            android:id="@+id/ranking_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/ranking"
-            app:backgroundTint="@color/menu_buttons_color"/>
-        <!-- Przycisk wyjścia z gry -->
-        <Button
-            android:id="@+id/exit_game"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:text="@string/exit"
-            app:backgroundTint="@color/menu_buttons_color"/>
-    </LinearLayout>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/top_background"
+        android:gravity="center"
+        android:text="@string/tetris_game"
+        android:textColor="@color/white"
+        android:textSize="65sp"
+        app:layout_constraintBottom_toTopOf="@+id/nick_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Witaj {pseudonim}! -->
+    <TextView
+        android:id="@+id/nick_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/play_solo_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topText"/>
+
+    <!-- Przycisk do rozpoczęcia gry solo-->
+    <Button
+        android:id="@+id/play_solo_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/play_button"
+        app:backgroundTint="@color/menu_buttons_color"
+        app:layout_constraintTop_toBottomOf="@+id/nick_name"
+        app:layout_constraintBottom_toTopOf="@+id/play_versus_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <!-- Przycisk do rozpoczęcia gry wersus -->
+    <Button
+        android:id="@+id/play_versus_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/play_versus"
+        app:backgroundTint="@color/menu_buttons_color"
+        app:layout_constraintTop_toBottomOf="@+id/play_solo_button"
+        app:layout_constraintBottom_toTopOf="@+id/settings_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <!-- Przycisk ustawień gry -->
+    <Button
+        android:id="@+id/settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/settings_button"
+        app:backgroundTint="@color/menu_buttons_color"
+        app:layout_constraintTop_toBottomOf="@+id/play_versus_button"
+        app:layout_constraintBottom_toTopOf="@+id/ranking_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!-- Przycisk rankingu gry -->
+    <Button
+        android:id="@+id/ranking_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ranking"
+        app:backgroundTint="@color/menu_buttons_color"
+        app:layout_constraintTop_toBottomOf="@+id/settings_button"
+        app:layout_constraintBottom_toTopOf="@+id/exit_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!-- Przycisk wyjścia z gry -->
+    <Button
+        android:id="@+id/exit_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/exit"
+        app:backgroundTint="@color/menu_buttons_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ranking_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>

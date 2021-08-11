@@ -7,4 +7,8 @@
     <string name="ranking">RANKING</string>
     <string name="exit">EXIT</string>
     <string name="hi">Hi %s</string>
+    <string name="left_button">Left Button</string>
+    <string name="down_button">Down Button</string>
+    <string name="right_button">Right Button</string>
+    <string name="roll_button">Roll Button</string>
 </resources>

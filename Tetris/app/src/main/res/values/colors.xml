@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="menu_background_color">#165A8E</color>
     <color name="menu_buttons_color">#2196F3</color>
+    <color name="tetris_background_color">#018CFB</color>
 </resources>

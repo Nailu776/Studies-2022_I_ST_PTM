@@ -1,19 +1,11 @@
 package com.example.tetris
 
-import android.view.MotionEvent
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class TetrisGameActivity : AppCompatActivity(), View.OnClickListener, View.OnLongClickListener, View.OnTouchListener{
-    override fun onClick(v: View?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLongClick(v: View?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        TODO("Not yet implemented")
+class TetrisGameActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_tetris_game)
     }
 }

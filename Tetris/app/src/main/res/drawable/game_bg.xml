@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Tło-->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <!--            Rozmiar-->
+            <size
+                android:width="260dp"
+                android:height="510dp"/>
+            <!--            Kolor-->
+            <solid
+                android:color="@color/tetris_grid_color"/>
+            <!--            Zaokrąglone rogi-->
+            <corners
+                android:radius="10dp"/>
+            <!--            Krawędź-->
+            <stroke
+                android:color="@color/green"
+                android:width="2dp"/>
+        </shape>
+    </item>
+</layer-list>

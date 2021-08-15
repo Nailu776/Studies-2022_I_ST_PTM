@@ -10,4 +10,24 @@
     <color name="menu_background_color">#165A8E</color>
     <color name="menu_buttons_color">#2196F3</color>
     <color name="tetris_background_color">#018CFB</color>
+    <color name="green">#0FEC08</color>
+    <color name="tetris_grid_color">#09E0E8</color>
+
+<!--    Kolory Kwadratów: -->
+    <color name="yellow_sq">#FFEB3B</color>
+    <color name="dark_yellow_sq">#4A4511</color>
+    <color name="blue_sq">#0E37FD</color>
+    <color name="dark_blue_sq">#091C78</color>
+    <color name="green_sq">#40F832</color>
+    <color name="dark_green_sq">#165511</color>
+    <color name="red_sq">#E91E1E</color>
+    <color name="dark_red_sq">#6C0E0E</color>
+    <color name="orange_sq">#FF5722</color>
+    <color name="dark_orange_sq">#551E0C</color>
+    <color name="purple_sq">#9822FF</color>
+    <color name="dark_purple_sq">#3D0F65</color>
+    <color name="light_blue_sq">#05DBF6</color>
+    <color name="dark_light_blue_sq">#022E33</color>
+    <color name="gray_sq">#918F8F</color>
+    <color name="dark_gray_sq">#3A3A3A</color>
 </resources>

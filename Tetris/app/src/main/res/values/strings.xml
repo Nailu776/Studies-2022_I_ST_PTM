@@ -11,4 +11,17 @@
     <string name="down_button">Down Button</string>
     <string name="right_button">Right Button</string>
     <string name="roll_button">Roll Button</string>
+    <string name="pause_button">Pause Button</string>
+    <string name="resume_button">Resume Button</string>
+    <string name="retry_txt">Retry</string>
+    <string name="resume_txt">Resume</string>
+    <string name="title">TETRIS GAME</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="start">START</string>
+    <string name="next_tetrimino">Next Tetrimino:</string>
+    <string name="level">Level</string>
+    <string name="_0">0</string>
+    <string name="high_score">High Score</string>
+    <string name="score">Score:</string>
+    <string name="good_luck">GOOD LUCK!</string>
 </resources>

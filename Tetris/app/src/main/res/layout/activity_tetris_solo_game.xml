@@ -24,55 +24,30 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/start_container"
+        app:layout_constraintBottom_toTopOf="@+id/game_grid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/start_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/game_grid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
-
-        <!--  Przycisk startu gry-->
-        <Button
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="4dp"
-            android:gravity="center"
-            android:text="@string/start"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:visibility="visible"
-            app:backgroundTint="@color/green" />
-
-        <TextView
-            android:id="@+id/gl_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="4dp"
-            android:gravity="center"
-            android:text="@string/good_luck"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            android:visibility="gone"
-            app:backgroundTint="@color/green" />
-
-
-    </LinearLayout>
+        android:text="@string/start"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/green"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintTop_toBottomOf="@id/gameOver"
+        app:layout_constraintEnd_toEndOf="@+id/game_grid"
+        app:layout_constraintStart_toStartOf="@+id/game_grid"
+        app:layout_constraintBottom_toBottomOf="@+id/game_grid"/>
     <!--[KONIEC]    Górna część layoutu-->
 
     <!--    Środkowa część layoutu-->
@@ -80,9 +55,9 @@
     <!-- Siatka gry-->
     <GridView
         android:id="@+id/game_grid"
-        android:layout_width="250dp"
-        android:layout_height="502dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
@@ -92,7 +67,7 @@
         app:layout_constraintEnd_toStartOf="@id/next_tetrimino"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start_container"/>
+        app:layout_constraintTop_toBottomOf="@id/title" />
     <!-- Napis końca gry-->
     <TextView
         android:id="@+id/gameOver"
@@ -108,7 +83,7 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/game_grid"
+        app:layout_constraintBottom_toTopOf="@id/start"
         app:layout_constraintEnd_toEndOf="@id/game_grid"
         app:layout_constraintStart_toStartOf="@id/game_grid"
         app:layout_constraintTop_toTopOf="@id/game_grid" />
@@ -123,7 +98,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="2dp"
         android:gravity="center"
 
         android:text="@string/next_tetrimino"
@@ -133,14 +108,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/game_grid"
-        app:layout_constraintTop_toBottomOf="@+id/start_container" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
     <!--    Wyświetlenie następnego tetrimino-->
     <LinearLayout
         android:id="@+id/next_tetrimino_disp"
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
+        android:layout_height="120dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/txt_level"
@@ -150,7 +125,7 @@
 
         <GridView
             android:id="@+id/nextBlock_4"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:background="@color/orange_sq"
             android:numColumns="4"
@@ -158,7 +133,7 @@
 
         <GridView
             android:id="@+id/nextBlock_5"
-            android:layout_width="125dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="@color/orange_sq"
             android:numColumns="5"
@@ -171,14 +146,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/level"
         android:textColor="@color/green"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/level"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txt_high_score"
+        app:layout_constraintEnd_toStartOf="@+id/level"
         app:layout_constraintStart_toEndOf="@id/game_grid"
         app:layout_constraintTop_toBottomOf="@+id/next_tetrimino_disp" />
     <!-- Tekst wyświetlający poziom-->
@@ -195,8 +170,8 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/txt_high_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/game_grid"
-        app:layout_constraintTop_toBottomOf="@+id/txt_level" />
+        app:layout_constraintStart_toEndOf="@id/txt_level"
+        app:layout_constraintTop_toBottomOf="@+id/next_tetrimino_disp" />
     <!--    Tekst "High score"-->
     <TextView
         android:id="@+id/txt_high_score"
@@ -209,10 +184,10 @@
         android:text="@string/high_score"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/high_score"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txt_total_score"
+        app:layout_constraintEnd_toStartOf="@+id/high_score"
         app:layout_constraintStart_toEndOf="@id/game_grid"
-        app:layout_constraintTop_toBottomOf="@+id/level" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_level" />
     <!-- Wyświetlenie najwyższego wyniku-->
     <TextView
         android:id="@+id/high_score"
@@ -227,8 +202,8 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/txt_total_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/game_grid"
-        app:layout_constraintTop_toBottomOf="@+id/txt_high_score" />
+        app:layout_constraintStart_toEndOf="@id/txt_high_score"
+        app:layout_constraintTop_toBottomOf="@+id/txt_level" />
     <!--    Tekst aktualny wynik-->
     <TextView
         android:id="@+id/txt_total_score"
@@ -291,7 +266,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/pause_button"
             android:src="@drawable/ic_baseline_pause_circle_outline_24"
-            android:visibility="gone"/>
+            android:visibility="visible" />
     </LinearLayout>
 
 
@@ -301,7 +276,7 @@
     <ImageView
         android:id="@+id/left"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
         android:contentDescription="@android:string/ok"
         app:layout_constraintBottom_toBottomOf="parent"

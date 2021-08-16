@@ -6,8 +6,9 @@
     <!-- Obrazek kwadratu 25x25-->
     <ImageView
         android:id="@+id/temp_sq"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:background="@drawable/square_blue"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:contentDescription="@string/square" />
 </LinearLayout>

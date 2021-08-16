@@ -28,60 +28,60 @@ class NextTetrimino : Tetrimino {
         // od 8 do 11 - trzeci wiersz
         when (name) {
             1 -> {
-                this.squere1 = 4
-                this.squere2 = 5
-                this.squere3 = 6
-                this.squere4 = 7
+                this.square1 = 4
+                this.square2 = 5
+                this.square3 = 6
+                this.square4 = 7
                 nameString = "I"
             }
             2 -> {
-                this.squere1 = 6
-                this.squere2 = 7
-                this.squere3 = 8
-                this.squere4 = 13
+                this.square1 = 6
+                this.square2 = 7
+                this.square3 = 8
+                this.square4 = 13
                 nameString = "J"
             }
             3 -> {
-                this.squere1 = 6
-                this.squere2 = 7
-                this.squere3 = 8
-                this.squere4 = 11
+                this.square1 = 6
+                this.square2 = 7
+                this.square3 = 8
+                this.square4 = 11
                 nameString = "L"
             }
             4 -> {
-                this.squere1 = 5
-                this.squere2 = 6
-                this.squere3 = 9
-                this.squere4 = 10
+                this.square1 = 5
+                this.square2 = 6
+                this.square3 = 9
+                this.square4 = 10
                 nameString = "O"
             }
             5 -> {
-                this.squere1 = 7
-                this.squere2 = 8
-                this.squere3 = 11
-                this.squere4 = 12
+                this.square1 = 7
+                this.square2 = 8
+                this.square3 = 11
+                this.square4 = 12
                 nameString = "S"
             }
             6 -> {
-                this.squere1 = 6
-                this.squere2 = 7
-                this.squere3 = 8
-                this.squere4 = 12
+                this.square1 = 6
+                this.square2 = 7
+                this.square3 = 8
+                this.square4 = 12
                 nameString = "T"
             }
             7 -> {
-                this.squere1 = 6
-                this.squere2 = 7
-                this.squere3 = 12
-                this.squere4 = 13
+                this.square1 = 6
+                this.square2 = 7
+                this.square3 = 12
+                this.square4 = 13
                 nameString = "Z"
             }
         }
         // Do wybranych indeksów poszczególnych kwadratów wpisz Tetrimino
         // Indeks oraz nazwę (położenie kwadratu oraz kolor)
-        nextTetrimino[squere1] = NextTetrimino(squere1, nameString)
-        nextTetrimino[squere2] = NextTetrimino(squere2, nameString)
-        nextTetrimino[squere3] = NextTetrimino(squere3, nameString)
-        nextTetrimino[squere4] = NextTetrimino(squere4, nameString)
+        nextTetrimino[square1] = NextTetrimino(square1, nameString)
+        nextTetrimino[square2] = NextTetrimino(square2, nameString)
+        nextTetrimino[square3] = NextTetrimino(square3, nameString)
+        nextTetrimino[square4] = NextTetrimino(square4, nameString)
     }
 }

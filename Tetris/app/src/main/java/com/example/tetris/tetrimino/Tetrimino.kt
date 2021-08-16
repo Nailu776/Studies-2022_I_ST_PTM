@@ -11,10 +11,14 @@ open class Tetrimino {
     // Obrót == 0 == nieobrócone Tetrimino
     open var rotation = 0
     // Indeksy poszczególnych kwadratów Tetrimino
-    open var squere1 = 0
-    open var squere2 = 0
-    open var squere3 = 0
-    open var squere4 = 0
+    open var square1 = 0
+    open var square2 = 0
+    open var square3 = 0
+    open var square4 = 0
+    open var square5 = 0
+    open var square6 = 0
+    open var square7 = 0
+    open var square8 = 0
     // Kolor
     open var color = R.drawable.square_blue
 
@@ -60,25 +64,45 @@ open class Tetrimino {
         // Przechodzimy po każdym kwadraciku
         // i jeżeli był niepusty (część Tetrimino) to go czyścimy
         // a jak był pusty to indeks kwadracika zerujemy
-        if (tetriminoList[squere1].name != "") {
-            tetriminoList[squere1] = Tetrimino()
+        if (tetriminoList[square1].name != "") {
+            tetriminoList[square1] = Tetrimino()
         }else {
-            squere1 = 0
+            square1 = 0
         }
-        if (tetriminoList[squere2].name != "") {
-            tetriminoList[squere2] = Tetrimino()
+        if (tetriminoList[square2].name != "") {
+            tetriminoList[square2] = Tetrimino()
         } else {
-            squere2 = 0
+            square2 = 0
         }
-        if (tetriminoList[squere3].name != "") {
-            tetriminoList[squere3] = Tetrimino()
+        if (tetriminoList[square3].name != "") {
+            tetriminoList[square3] = Tetrimino()
         }else {
-            squere3 = 0
+            square3 = 0
         }
-        if (tetriminoList[squere4].name != "") {
-            tetriminoList[squere4] = Tetrimino()
+        if (tetriminoList[square4].name != "") {
+            tetriminoList[square4] = Tetrimino()
         }else {
-            squere4 = 0
+            square4 = 0
+        }
+        if (tetriminoList[square5].name != "") {
+            tetriminoList[square5] = Tetrimino()
+        }else {
+            square5 = 0
+        }
+        if (tetriminoList[square6].name != "") {
+            tetriminoList[square6] = Tetrimino()
+        } else {
+            square6 = 0
+        }
+        if (tetriminoList[square7].name != "") {
+            tetriminoList[square7] = Tetrimino()
+        }else {
+            square7 = 0
+        }
+        if (tetriminoList[square8].name != "") {
+            tetriminoList[square8] = Tetrimino()
+        }else {
+            square8 = 0
         }
     }
 
@@ -88,10 +112,14 @@ open class Tetrimino {
         // True == można zejść niżej
         return try {
             tetriminoList[this.mid + 10]
-            tetriminoList[this.squere1 + 10]
-            tetriminoList[this.squere2 + 10]
-            tetriminoList[this.squere3 + 10]
-            tetriminoList[this.squere4 + 10]
+            tetriminoList[this.square1 + 10]
+            tetriminoList[this.square2 + 10]
+            tetriminoList[this.square3 + 10]
+            tetriminoList[this.square4 + 10]
+            tetriminoList[this.square5 + 10]
+            tetriminoList[this.square6 + 10]
+            tetriminoList[this.square7 + 10]
+            tetriminoList[this.square8 + 10]
             true
         } catch (exception: IndexOutOfBoundsException){
             // False == próba uzyskania dostępu do elementu poza tablicą

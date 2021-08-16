@@ -38,25 +38,25 @@ class SquareAdapter(private val context: Context, tetriminoList: ArrayList<Tetri
                 // W zależności od rodzaju Tetrimino ustalony jest kolor wzorowany na Wikipedii
                 when (name) {
                     "I" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[0])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[0])
                     }
                     "J" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[1])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[1])
                     }
                     "L" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[2])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[2])
                     }
                     "O" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[3])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[3])
                     }
                     "S" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[4])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[4])
                     }
                     "T" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[5])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[5])
                     }
                     "Z" -> {
-                        background.setBackgroundResource(Constants.TABLE_OF_SQUERES[6])
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[6])
                     }
                 }
             }

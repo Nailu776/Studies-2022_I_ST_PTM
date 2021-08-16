@@ -1,8 +1,11 @@
 package com.example.tetris
 
+import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
@@ -10,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tetris.adapter.SquareAdapter
 import com.example.tetris.tetrimino.*
+import kotlin.math.roundToInt
 
 open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
 
@@ -55,10 +59,15 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var nextTetriminoCols4 : GridView
     private lateinit var nextTetriminoCols5 : GridView
     // Tekst powodzenia
-    private lateinit var goodLuckView: TextView
+    //private lateinit var goodLuckView: TextView
 
+    private lateinit var titleTxt : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Ukryj UI
+        hideSystemUI()
+        // Zmień layout w zależności od metryk ekranu
+        screenAdaptation()
         // Ustaw kontent
         setContentView(R.layout.activity_tetris_solo_game)
         // Znajdź wszystkie widoki
@@ -71,6 +80,40 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         setButtonsClickability(false)
     }
 
+
+    // Funkcja adaptuje się do density posiadanego ekranu
+    private fun screenAdaptation() {
+        // TODO
+        val dispMetr = DisplayMetrics()
+        val windowManager = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager.defaultDisplay.getMetrics(dispMetr)
+        val heightDP = (dispMetr.heightPixels / dispMetr.density) .roundToInt()
+        val widthDP = (dispMetr.widthPixels / dispMetr.density) .roundToInt()
+    }
+    // Źródło : https://developer.android.com/training/system-ui/immersive
+    // Funkcja ukrywająca UI systemu
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                // Set the content to appear under the system bars so that the
+                // content doesn't resize when the system bars hide and show.
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                // Hide the nav bar and status bar
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
+    // Funkcja pokazująca UI systemu
+    // Shows the system bars by removing all the flags
+    // except for the ones that make the content appear under the system bars.
+    private fun showSystemUI() {
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+    }
     override fun onClick(v: View?) {
         when(v){
             leftMoveView -> {
@@ -97,7 +140,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
                 startClicked()
                 pauseClickView.visibility = View.VISIBLE
                 setButtonsClickability(true)
-                goodLuckView.visibility = View.VISIBLE
+               // goodLuckView.visibility = View.VISIBLE
             }
         }
     }
@@ -166,7 +209,6 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         totalScore = findViewById(R.id.totalScore)
         nextTetriminoCols4 = findViewById(R.id.nextBlock_4)
         nextTetriminoCols5 = findViewById(R.id.nextBlock_5)
-        goodLuckView = findViewById(R.id.gl_txt)
     }
 
     // Funkcja ustawiająca OnClickListenery do widoków

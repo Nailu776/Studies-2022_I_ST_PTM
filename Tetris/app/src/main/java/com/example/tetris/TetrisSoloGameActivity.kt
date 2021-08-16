@@ -335,7 +335,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         // Wylosuj następne Tetrimino (od 1 do 7)
         if (next == 0){
             next = (1..7).random()
-            next = 6 // TODO usunąć! tą linijkę!!!
+            next = 1 // TODO usunąć! tą linijkę!!!
         }
         // Wybierz wylosowane Tetrimino
         mainTetrimino = selectTetrimino()
@@ -345,7 +345,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         timer()
         // Wylosuj następne Tetrimino
         next = (1..7).random()
-        next = 6// TODO usunąć! tą linijkę!!!
+        next = 1// TODO usunąć! tą linijkę!!!
         // Wyświetl następne Tetrimino
         displayNext(next)
     }
@@ -391,7 +391,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
     // w zależności od ilości kolumn ilu potrzebuje
     private fun setNextTetriminoGridView(){
         // Jeżeli jest O lub I to wykorzystaj 4 kolumny
-        if (next == 2 || next == 4){
+        if (next == 1 || next == 4){
             nextView = nextTetriminoCols4
             nextTetriminoCols4.visibility = View.VISIBLE
             nextTetriminoCols5.visibility = View.GONE

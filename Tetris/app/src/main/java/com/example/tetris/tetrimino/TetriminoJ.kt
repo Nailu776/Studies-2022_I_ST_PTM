@@ -471,7 +471,7 @@ class TetriminoJ : Tetrimino {
     override fun moveDown(tetriminoList: ArrayList<Tetrimino>){
         // Indeks środka jest przesunięty w dół
         this.mid += 10
-        // Tworzymy nowe 4 kwadraciki litery I przesunięte w dół
+        // Tworzymy nowe 4 kwadraciki litery J przesunięte w dół
         tetriminoList[this.mid] = TetriminoJ(this.mid)
         if (this.square1 != 0) {
             this.square1 += 10
@@ -506,5 +506,4 @@ class TetriminoJ : Tetrimino {
             tetriminoList[square8] = TetriminoJ(square8)
         }
     }
-
 }

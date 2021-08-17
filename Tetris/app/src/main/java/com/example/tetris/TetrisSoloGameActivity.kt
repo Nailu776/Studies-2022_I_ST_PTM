@@ -544,7 +544,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         // Dodaj punkty do wyniku gracza
         addPoints(point)
         // Sprawdź czy możesz zwiększyć poziom
-        if(countDownInterval > 1000){
+        if(countDownInterval > 100){
             // Jeżeli możesz to zwiększ poziom na nowy
             changeLevel(score/100)
         }

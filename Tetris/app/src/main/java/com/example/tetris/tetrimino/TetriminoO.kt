@@ -3,7 +3,7 @@ package com.example.tetris.tetrimino
 class TetriminoO  : Tetrimino {
 
     // Tetrimino w kształcie litery O
-    override var name = "O"
+    override var name: String = "O"
 
     // Przekazujemy tylko indeks kwadratu, bo nazwę już mamy
     constructor(mid: Int){

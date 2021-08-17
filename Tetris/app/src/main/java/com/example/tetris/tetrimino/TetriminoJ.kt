@@ -3,7 +3,7 @@ package com.example.tetris.tetrimino
 class TetriminoJ : Tetrimino {
 
     // Tetrimino w kształcie litery J
-    override var name = "J"
+    override var name: String = "J"
 
     // Przekazujemy tylko indeks kwadratu, bo nazwę już mamy
     constructor(mid: Int){
@@ -68,7 +68,7 @@ class TetriminoJ : Tetrimino {
                     return true
                 }
                 else {
-                    // W przeciwnym razie nie można obrócić bo kwadracik powyżej blokuje
+                    // W przeciwnym razie nie można obrócić
                     // Dlatego wyzeruj "chwycone" kwadraciki (poza mid,s1,s2,s3)
                     this.square4 = 0
                     this.square5 = 0
@@ -95,7 +95,7 @@ class TetriminoJ : Tetrimino {
                     return true
                 }
                 else {
-                    // W przeciwnym razie nie można obrócić bo kwadracik powyżej blokuje
+                    // W przeciwnym razie nie można obrócić
                     this.square1 = 0
                     this.square2 = 0
                     this.square3 = 0
@@ -121,7 +121,7 @@ class TetriminoJ : Tetrimino {
                     return true
                 }
                 else {
-                    // W przeciwnym razie nie można obrócić bo kwadracik powyżej blokuje
+                    // W przeciwnym razie nie można obrócić
                     this.square3 = 0
                     this.square5 = 0
                     this.square6 = 0
@@ -148,7 +148,7 @@ class TetriminoJ : Tetrimino {
                     return true
                 }
                 else {
-                    // W przeciwnym razie nie można obrócić bo kwadracik powyżej blokuje
+                    // W przeciwnym razie nie można obrócić
                     this.square1 = 0
                     this.square2 = 0
                     this.square3 = 0

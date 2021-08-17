@@ -335,7 +335,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         // Wylosuj następne Tetrimino (od 1 do 7)
         if (next == 0){
             next = (1..7).random()
-            next = 5 // TODO usunąć! tą linijkę!!!
+            next = 7 // TODO usunąć! tą linijkę!!!
         }
         // Wybierz wylosowane Tetrimino
         mainTetrimino = selectTetrimino()
@@ -345,7 +345,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         timer()
         // Wylosuj następne Tetrimino
         next = (1..7).random()
-        next = 5// TODO usunąć! tą linijkę!!!
+        next = 7// TODO usunąć! tą linijkę!!!
         // Wyświetl następne Tetrimino
         displayNext(next)
     }

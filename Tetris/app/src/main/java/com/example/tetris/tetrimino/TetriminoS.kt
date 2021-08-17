@@ -92,18 +92,18 @@ class TetriminoS : Tetrimino {
         // W zależności od rotacji
         when(this.rotation) {
             0, 2->{
+                // Sprawdź czy górna ściana nie blokuje
+                if (this.mid < 10){
+                    return false
+                }
+            }
+            1, 3 -> {
                 // Sprawdź prawą ścianę czy nie blokuje
                 // ( czy środek tetrimino nie jest w ostatniej kolumnie)
                 for (x in 9..199 step 10){
                     if (this.mid == x){
                         return false
                     }
-                }
-            }
-            1, 3 -> {
-                // Sprawdź czy górna ściana nie blokuje
-                if (this.mid < 10){
-                    return false
                 }
             }
             // Jeżeli jakiś błąd wystąpił i rotacja nie jest od 0 do 3 włącznie

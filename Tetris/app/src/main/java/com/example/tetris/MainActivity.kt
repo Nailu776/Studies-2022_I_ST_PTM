@@ -105,7 +105,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
             76 -> {
-                userNickname = data?.getStringExtra("userNickname").toString()
+                userNickname = data?.getStringExtra("userNickname") ?: ""
+                startLevel = data?.getIntExtra("startLevel",0) ?: 0
             }
         }
 

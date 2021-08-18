@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tetris">
-
-        <activity android:name=".TetrisSoloGameActivity"></activity>
+        <activity android:name=".VersusGameActivity"></activity>
+        <activity android:name=".RankingActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".TetrisSoloGameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

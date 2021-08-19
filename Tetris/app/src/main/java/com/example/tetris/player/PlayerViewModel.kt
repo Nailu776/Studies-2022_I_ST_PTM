@@ -16,8 +16,9 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
         readAllData = repository.readAllData
     }
 
-    fun addPlayer(player: Player){
+    fun addPlayer(player: Player, nick : String){
         viewModelScope.launch(Dispatchers.IO){
+            if(repository.findByNick(nick) == null)
           repository.addPlayer(player)
         }
     }

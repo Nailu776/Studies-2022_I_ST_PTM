@@ -8,10 +8,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.player.Player
-import com.example.tetris.player.PlayerDatabase
 import com.example.tetris.player.PlayerViewModel
 
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
@@ -24,7 +22,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var applyChanges : Button
     private lateinit var nickName : EditText
     private lateinit var mPlayerViewModel: PlayerViewModel
-
+    private lateinit var startLevelEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +31,16 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         startLevel = intent.getIntExtra("startLevel",0)
         applyChanges = findViewById(R.id.apply_Changes_Btn)
         applyChanges.setOnClickListener(this)
-        nickName = findViewById(R.id.editTextTextPersonName)
+        nickName = findViewById(R.id.edit_nick)
         mPlayerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
+        startLevelEditText = findViewById(R.id.edit_start_level)
+        startLevelEditText.setText(startLevel.toString())
+        nickName.setText(userNickname)
     }
     override fun onClick(v: View?) {
         when(v){
             applyChanges -> {
+                startLevel = startLevelEditText.text.toString().toInt()
                 userNickname = nickName.text.toString()
                 insertPlayerToDatabaseIfFirstTime()
                 setResult(Activity.RESULT_OK,
@@ -46,6 +48,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
                                 .putExtra("startLevel", startLevel)
                                 .putExtra("userNickname", userNickname))
                 finish()
+
             }
         }
     }
@@ -53,16 +56,11 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     private fun insertPlayerToDatabaseIfFirstTime() {
         val highScore = 0
         // Sprawdź czy w bazie danych jest dany gracz
-//        if(inputCheck)
         // Stworzenie nowego gracza
         val player = Player(0,userNickname,highScore)
         // Dodanie do bazy danych
-        mPlayerViewModel.addPlayer(player)
-        Toast.makeText(this,"Dodano gracza",Toast.LENGTH_LONG).show()
+        mPlayerViewModel.addPlayer(player,userNickname)
+        Toast.makeText(this,userNickname +" Startujesz z poziomu: " + startLevel ,Toast.LENGTH_LONG).show()
     }
-
-//    private fun inputCheck(nick: String): Boolean{
-//        return PlayerDatabase.getDatabase(this).
-//    }
 
 }

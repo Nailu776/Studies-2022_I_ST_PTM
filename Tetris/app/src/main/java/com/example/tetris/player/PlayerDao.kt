@@ -12,7 +12,7 @@ interface PlayerDao {
     fun loadAllByIds(playerIds: IntArray): List<Player>
 
     @Query("SELECT * FROM player_table WHERE nick LIKE :nick")
-    fun findByNick(nick: String): Player
+    suspend fun findByNick(nick: String): Player?
 
 //    @Insert
 //    fun insertAll(vararg players: Player)
@@ -26,4 +26,7 @@ interface PlayerDao {
 
     @Query("SELECT * FROM player_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Player>>
+
+    @Query("DELETE FROM player_table")
+    fun deleteAll()
 }

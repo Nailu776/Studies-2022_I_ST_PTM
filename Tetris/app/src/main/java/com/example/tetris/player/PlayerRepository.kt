@@ -10,5 +10,9 @@ class PlayerRepository(private val playerDao: PlayerDao) {
         playerDao.addPlayer(player)
     }
 
+    suspend fun findByNick(nick : String) : Player? {
+        return playerDao.findByNick(nick)
+    }
+
 
 }

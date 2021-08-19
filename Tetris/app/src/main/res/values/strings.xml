@@ -26,4 +26,8 @@
     <string name="good_luck">GOOD LUCK!</string>
     <string name="square">Square</string>
     <string name="refresh">refresh</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="disconnect">Disconnect</string>
+
 </resources>

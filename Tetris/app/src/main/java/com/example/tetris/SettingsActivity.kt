@@ -55,6 +55,16 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_OK,
+                Intent()
+                        .putExtra("startLevel", startLevel)
+                        .putExtra("playerNickName", playerNickName))
+        finish()
+        super.onBackPressed()
+    }
+
+
     private fun insertPlayerToDatabaseIfFirstTime() {
         val highScore = 0
         // Sprawdź czy w bazie danych jest dany gracz

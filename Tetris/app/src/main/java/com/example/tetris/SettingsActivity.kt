@@ -16,7 +16,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     // Ustawienia
     // Pseudonim gracza
-    private var userNickname = ""
+    private var playerNickName = ""
     // Poziom startowy (działa tylko na soloq)
     private var startLevel = 0
     private lateinit var applyChanges : Button
@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        userNickname = intent.getStringExtra("userNickname").toString()
+        playerNickName = intent.getStringExtra("playerNickName").toString()
         startLevel = intent.getIntExtra("startLevel",0)
         applyChanges = findViewById(R.id.apply_Changes_Btn)
         applyChanges.setOnClickListener(this)
@@ -35,18 +35,20 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         mPlayerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
         startLevelEditText = findViewById(R.id.edit_start_level)
         startLevelEditText.setText(startLevel.toString())
-        nickName.setText(userNickname)
+        nickName.setText(playerNickName)
     }
     override fun onClick(v: View?) {
         when(v){
             applyChanges -> {
                 startLevel = startLevelEditText.text.toString().toInt()
-                userNickname = nickName.text.toString()
+                if(startLevel > 19) startLevel = 19
+                playerNickName = nickName.text.toString()
+                if(playerNickName != "")
                 insertPlayerToDatabaseIfFirstTime()
                 setResult(Activity.RESULT_OK,
                         Intent()
                                 .putExtra("startLevel", startLevel)
-                                .putExtra("userNickname", userNickname))
+                                .putExtra("playerNickName", playerNickName))
                 finish()
 
             }
@@ -57,10 +59,10 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         val highScore = 0
         // Sprawdź czy w bazie danych jest dany gracz
         // Stworzenie nowego gracza
-        val player = Player(0,userNickname,highScore)
+        val player = Player(0,playerNickName,highScore)
         // Dodanie do bazy danych
-        mPlayerViewModel.addPlayer(player,userNickname)
-        Toast.makeText(this,userNickname +" Startujesz z poziomu: " + startLevel ,Toast.LENGTH_LONG).show()
+        mPlayerViewModel.addPlayer(player,playerNickName)
+        Toast.makeText(this, "Witaj",Toast.LENGTH_LONG).show()
     }
 
 }

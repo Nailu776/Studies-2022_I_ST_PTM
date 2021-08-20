@@ -14,5 +14,12 @@ class PlayerRepository(private val playerDao: PlayerDao) {
         return playerDao.findByNick(nick)
     }
 
+    suspend fun updateHighScore(highScore : Int, nick: String) {
+        return playerDao.updateHighScore(highScore,nick)
+    }
+
+    fun getHighScore(nick: String) : Int {
+        return playerDao.getHighScore(nick)
+    }
 
 }

@@ -5,28 +5,43 @@ import androidx.room.*
 
 @Dao
 interface PlayerDao {
-    @Query("SELECT * FROM player_table")
-    fun getAll(): List<Player>
 
-    @Query("SELECT * FROM player_table WHERE id IN (:playerIds)")
-    fun loadAllByIds(playerIds: IntArray): List<Player>
-
-    @Query("SELECT * FROM player_table WHERE nick LIKE :nick")
-    suspend fun findByNick(nick: String): Player?
-
-//    @Insert
-//    fun insertAll(vararg players: Player)
-
-    @Delete
-    fun delete(player: Player)
-
+    // Add player
     @Insert(onConflict =  OnConflictStrategy.IGNORE)
     suspend fun addPlayer(player: Player)
 
-
+    // get all players for ranking
     @Query("SELECT * FROM player_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Player>>
 
-    @Query("DELETE FROM player_table")
-    fun deleteAll()
+    // Update whole player
+    @Update
+    fun update(player: Player)
+
+    // Delete player
+    @Delete
+    fun delete(player: Player)
+
+    // Get all players
+    @Query("SELECT * FROM player_table")
+    fun getAll(): List<Player>
+
+    // Find player by nick
+    @Query("SELECT * FROM player_table WHERE nick LIKE :nick")
+    suspend fun findByNick(nick: String): Player?
+
+    // Update high score
+    @Query("UPDATE player_table SET high_score =:highScore WHERE nick LIKE :nick" )
+    suspend fun updateHighScore(highScore :Int, nick: String)
+
+    // Get High score
+    @Query("SELECT high_score FROM player_table WHERE nick LIKE :nick")
+    fun getHighScore(nick: String) : Int
+
+    // @Query("DELETE FROM player_table")
+    // fun deleteAll()
+    // może generować błędy
+    // lepiej:
+    // ttps://developer.android.com/reference/androidx/room/RoomDatabase#clearAllTables()
+    // clearAllTables ()
 }

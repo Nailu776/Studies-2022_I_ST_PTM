@@ -13,11 +13,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // Ustawienia
     // Pseudonim gracza
-    private var userNickname = ""
+    private var playerNickName = ""
     // Poziom startowy (działa tylko na soloq)
     private var startLevel = 0
 
@@ -56,30 +57,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
     override fun onResume() {
         super.onResume()
-        if (userNickname.isNotEmpty()) {
+        if (playerNickName.isNotEmpty()) {
             nick_name.visibility = View.VISIBLE
-            nick_name.text = resources.getString(R.string.hi, "${userNickname}!")
+            nick_name.text = resources.getString(R.string.hi, "${playerNickName}!")
         } else {
             nick_name.visibility = View.INVISIBLE
         }
-    }
-
-    var settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            // There are no request codes
-            val data: Intent? = result.data
-        }
-    }
-
-    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        // Handle the returned Uri
     }
 
     override fun onClick(v: View?) {
         when(v){
             play_solo_button -> {
                 startActivity(
-                    Intent(this, TetrisSoloGameActivity::class.java))
+                    Intent(this, TetrisSoloGameActivity::class.java)
+                            .putExtra("startLevel", startLevel)
+                            .putExtra("playerNickName", playerNickName))
             }
             play_versus_button -> {
                 startActivity(
@@ -89,7 +81,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startActivityForResult(
                         Intent(this, SettingsActivity::class.java)
                                 .putExtra("startLevel", startLevel)
-                                .putExtra("userNickname", userNickname),76)
+                                .putExtra("playerNickName", playerNickName),76)
             }
             ranking_button -> {
                 startActivity(Intent(this, RankingActivity::class.java))
@@ -105,7 +97,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
             76 -> {
-                userNickname = data?.getStringExtra("userNickname") ?: ""
+                playerNickName = data?.getStringExtra("playerNickName") ?: ""
                 startLevel = data?.getIntExtra("startLevel",0) ?: 0
             }
         }

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "player_table")
 class Player(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "nick") val nick: String?,
-    @ColumnInfo(name = "high_score") val highScore: Int = 0){
-
+    @ColumnInfo(name = "nick") val nick: String,
+    @ColumnInfo(name = "high_score") val highScore: Int = 0): Comparable<Player> {
+    override fun compareTo(other: Player): Int = this.highScore.compareTo(other.highScore)
 }

@@ -11,8 +11,13 @@ import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.tetris.adapter.SquareAdapter
+import com.example.tetris.player.PlayerViewModel
 import com.example.tetris.tetrimino.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
@@ -60,11 +65,14 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
     private lateinit var nextTetriminoCols5 : GridView
     // Tekst powodzenia
     //private lateinit var goodLuckView: TextView
+    private var highScore = "0"
+    private lateinit var highScoreView : TextView
+    private lateinit var playerNickName : String
 
-    private lateinit var titleTxt : TextView
+    private lateinit var mPlayerViewModel: PlayerViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Ukryj UI
+        // Ukryj UI żeby przypadkiem nie kliknąć cofnij podczas gry ;)
         hideSystemUI()
         // Zmień layout w zależności od metryk ekranu
         screenAdaptation()
@@ -78,8 +86,23 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         initializeBoard()
         // Wyłącz przyciski nawigacji
         setButtonsClickability(false)
+        // Ustaw pseudonim gracza
+        playerNickName = intent.getStringExtra("playerNickName").toString()
+        // Ustaw poziom
+        changeLevel(
+            intent.getIntExtra("startLevel",0)
+                .toString().toInt())
+        // Zdobądź PlayerViewModel
+        mPlayerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
+        if(playerNickName != ""){
+            // Zdobądź najwyższy wynik z bazy danych
+            GlobalScope.launch(Dispatchers.IO){
+                val hscore = mPlayerViewModel.getHighScore(playerNickName)
+                highScore = hscore.toString()
+                highScoreView.text = highScore
+            }
+        }
     }
-
 
     // Funkcja adaptuje się do density posiadanego ekranu
     private fun screenAdaptation() {
@@ -90,6 +113,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         val heightDP = (dispMetr.heightPixels / dispMetr.density) .roundToInt()
         val widthDP = (dispMetr.widthPixels / dispMetr.density) .roundToInt()
     }
+
     // Źródło : https://developer.android.com/training/system-ui/immersive
     // Funkcja ukrywająca UI systemu
     private fun hideSystemUI() {
@@ -106,6 +130,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
+
     // Funkcja pokazująca UI systemu
     // Shows the system bars by removing all the flags
     // except for the ones that make the content appear under the system bars.
@@ -114,6 +139,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
+
     override fun onClick(v: View?) {
         when(v){
             leftMoveView -> {
@@ -137,10 +163,10 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
                 resumeClicked()
             }
             start -> {
+                hideSystemUI()
                 startClicked()
                 pauseClickView.visibility = View.VISIBLE
                 setButtonsClickability(true)
-               // goodLuckView.visibility = View.VISIBLE
             }
         }
     }
@@ -209,6 +235,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         totalScore = findViewById(R.id.totalScore)
         nextTetriminoCols4 = findViewById(R.id.nextBlock_4)
         nextTetriminoCols5 = findViewById(R.id.nextBlock_5)
+        highScoreView = findViewById(R.id.high_score)
     }
 
     // Funkcja ustawiająca OnClickListenery do widoków
@@ -325,6 +352,10 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
                 gameOver.animate().translationY(0f).duration = 1000
                 // Przycisk startu gry z napisem: Retry
                 start.text = getString(R.string.retry_txt)
+                // Pokaż ui systemowe
+                showSystemUI()
+                // Wyłącz możliwość klikania ruchów
+                setButtonsClickability(false)
             }
         }
     }
@@ -556,6 +587,19 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         score += point
         // Wyświetl graczowi nowy wynik
         totalScore.text = score.toString()
+        // Sprawdź wynik
+        checkHighScore(score)
+    }
+
+    // Funkcja sprawdzająca najwyższy wynik i zapisująca go w bazie danych
+    private fun checkHighScore(score: Int){
+        if (score > highScore!!.toInt()){
+            highScore = score.toString()
+            highScoreView.text = highScore
+            if (playerNickName != ""){
+                mPlayerViewModel.updateHighScore(highScore.toInt(),playerNickName)
+            }
+        }
     }
 
     // Funkcja ustawiająca możliwość (lub jej brak) klikania
@@ -571,11 +615,13 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
     // Funkcja zmieniająca aktyualny poziom gry
     // na poziom podany w argumencie
     private fun changeLevel(newLevel : Int){
-        // Zmień poziom gry
-        currentLevel = newLevel
-        // Adekwatnie zmień przerwę pomiędzy tickami timera
-        countDownInterval = Constants.COUNT_DOWN_INITIAL_INTERVAL - currentLevel * 50L
-        // Wyświetl graczowi nowy poziom
-        level.text = currentLevel.toString()
+        if(newLevel > currentLevel){
+            // Zmień poziom gry
+            currentLevel = newLevel
+            // Adekwatnie zmień przerwę pomiędzy tickami timera
+            countDownInterval = Constants.COUNT_DOWN_INITIAL_INTERVAL - currentLevel * 50L
+            // Wyświetl graczowi nowy poziom
+            level.text = currentLevel.toString()
+        }
     }
 }

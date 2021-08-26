@@ -28,7 +28,7 @@ import kotlin.math.roundToInt
 class ControlActivity: AppCompatActivity(){
 
     companion object {
-        var myUUID: UUID = UUID.randomUUID()
+        var myUUID: UUID = UUID.fromString("b7da2b1f-9311-402b-99c0-c7cb668ea199 ")
         var bluetoothSocket: BluetoothSocket?= null
         lateinit var progress: ProgressDialog
         lateinit var bluetoothAdapter: BluetoothAdapter

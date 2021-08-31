@@ -28,7 +28,7 @@ import kotlin.math.roundToInt
 class ControlActivity: AppCompatActivity(){
 
     companion object {
-        var myUUID: UUID = UUID.fromString("b7da2b1f-9311-402b-99c0-c7cb668ea199 ")
+        var myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         var bluetoothSocket: BluetoothSocket?= null
         lateinit var progress: ProgressDialog
         lateinit var bluetoothAdapter: BluetoothAdapter
@@ -40,24 +40,30 @@ class ControlActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.control_layout)
         address = intent.getStringExtra(VersusGameActivity.EXTRA_ADDRESS).toString()
-        ConnectToDevice(this).execute()
+        ConnectToDevice(this).start()
 
         findViewById<Button>(R.id.send).setOnClickListener{sendCommand("Sending a message.")}
+        findViewById<Button>(R.id.refresh).setOnClickListener{receive()}
     }
 
     private fun receive(){
         var bytes: Int
-        var byteArray: ByteArray = ByteArray(1024)
+        val byteArray: ByteArray = ByteArray(1024)
         var message: String = ""
         try{
             //Dot is the end of the message.
             while(!(message.contains('.'))){
                 bytes = bluetoothSocket!!.inputStream.read(byteArray)
                 message = message + String(byteArray, 0, bytes)
+                Log.i("message",message);
+            }
+            if(message.equals("")){
+                message = "Message was not sent."
             }
         } catch(e: Exception){
             e.printStackTrace()
         }
+        findViewById<TextView>(R.id.textView).text = message;
     }
     private fun sendCommand(input: String){
         try {
@@ -78,19 +84,15 @@ class ControlActivity: AppCompatActivity(){
         }
         finish()
     }
-    private class ConnectToDevice(c: Context): AsyncTask<Void, Void, String>() {
+    private class ConnectToDevice(c: Context): Thread() {
         private var connectSuccess: Boolean = true
-        private val context: Context
-        init{
-            this.context = c
-        }
+        private val context: Context = c
 
-        override fun onPreExecute() {
-            super.onPreExecute()
+        init{
             progress = ProgressDialog.show(context,"Connecting...", "Please wait")
         }
 
-        override fun doInBackground(vararg p0: Void?): String? {
+        override fun run(){
             try {
                 if(bluetoothSocket == null || !isConnected){
                     bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
@@ -103,18 +105,19 @@ class ControlActivity: AppCompatActivity(){
                 connectSuccess = false
                 e.printStackTrace()
             }
-            return null
+            onPostExecute()
         }
 
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
+         fun onPostExecute() {
             if(!connectSuccess){
                 Log.i("data", "Couldn't connect")
+                Log.i("data", address)
             } else{
                 isConnected = true
             }
             progress.dismiss()
         }
     }
+
 
 }

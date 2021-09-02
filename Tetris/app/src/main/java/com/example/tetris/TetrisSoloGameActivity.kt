@@ -226,12 +226,52 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         highScoreView = findViewById(R.id.high_score)
     }
 
+    // Funkcja przesuwająca tetrimino w dół na ile może on long click
+    private fun moveDownLongClick(){
+        // Jeżeli nie natrafiło na spód planszy
+        if (mainTetrimino.detectBottom(tetriminoSquaresList)) {
+            // Sprawdź możliwość ruchu w dół
+            if (mainTetrimino.checkDown(tetriminoSquaresList)) {
+                // Usuń Tetrimino z listy
+                mainTetrimino.removeTetrimino(tetriminoSquaresList)
+                // Wstaw przesunięte w dół
+                mainTetrimino.moveDown(tetriminoSquaresList)
+                // Wyświetl nową plansze
+                gameGridViewAdapt()
+            }
+        }
+    }
+
     // Funkcja ustawiająca OnClickListenery do widoków
     private fun setAllOnClickListeners(){
         start.setOnClickListener(this)
         leftMoveView.setOnClickListener(this)
+        leftMoveView.setOnLongClickListener{
+            // Spróbuj przesunąć 10 razy (od prawej do lewej maksymalnie)
+            for(i in 0..9){
+                moveLeft()
+            }
+            // Wydarzenie zostało obsłużone == true
+            true
+        }
         downMoveView.setOnClickListener(this)
+        downMoveView.setOnLongClickListener {
+            // Spróbuj przesunąć 20 razy (od góry do dołu maksymalnie)
+            for(i in 0..19){
+                moveDownLongClick()
+            }
+            // Wydarzenie zostało obsłużone == true
+            true
+        }
         rightMoveView.setOnClickListener(this)
+        rightMoveView.setOnLongClickListener{
+            // Spróbuj przesunąć 10 razy (od lewej do prawej maksymalnie)
+            for(i in 0..9){
+                moveRight()
+            }
+            // Wydarzenie zostało obsłużone == true
+            true
+        }
         rotateMoveView.setOnClickListener(this)
         pauseClickView.setOnClickListener(this)
         resumeClickView.setOnClickListener(this)

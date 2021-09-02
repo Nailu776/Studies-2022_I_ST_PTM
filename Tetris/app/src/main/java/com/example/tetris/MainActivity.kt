@@ -1,15 +1,11 @@
 package com.example.tetris
 
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -19,7 +15,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     // Ustawienia
     // Pseudonim gracza
     private var playerNickName = ""
-    // Poziom startowy (działa tylko na soloq)
+    // Poziom startowy (funkcjonalność tylko na rozgrywce jednoosobowej)
     private var startLevel = 0
 
     // Te przyciski będą zainicjalizowane onCreate

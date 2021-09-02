@@ -14,6 +14,8 @@ import java.util.*
 
 class SquareAdapter(private val context: Context, tetriminoList: ArrayList<Tetrimino>, tNum: Int) : BaseAdapter() {
 
+    // Adapter kwadratów w gridView
+
     private var inflater: LayoutInflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private val tetriminoes: ArrayList<Tetrimino> = tetriminoList
     private val tetrimino = tNum
@@ -26,14 +28,18 @@ class SquareAdapter(private val context: Context, tetriminoList: ArrayList<Tetri
         // else view = convertView
         val view : View = convertView ?: inflater.inflate(tetrimino, null)
 
+        // Parametry tetrimino w określonej pozycji w gridView (środek oraz nazwa/kolor)
         mid = tetriminoes[position].mid
         name = tetriminoes[position].name
+        // Ustawienie tła widoku kostki
         background = view.findViewById(R.id.temp_sq)
+        // Wyłaczenie widzialności kostki w siatce
         view.visibility = View.GONE
 
-        // Jeżeli dany kwadracik nie jest pusty
+        // Jeżeli dany kwadracik nie jest pusty (czyli jest częścią jakiegoś tetrimino)
         if(name != ""){
             if (position == mid) {
+                // Włączenie widzialności kostki w siatce
                 view.visibility = View.VISIBLE
                 // W zależności od rodzaju Tetrimino ustalony jest kolor wzorowany na Wikipedii
                 when (name) {
@@ -61,16 +67,21 @@ class SquareAdapter(private val context: Context, tetriminoList: ArrayList<Tetri
                 }
             }
         }
-
+        // Zwrócenie kostki
         return view
     }
 
+    // Zwrócenie ilości kostek na liście
     override fun getCount(): Int {
         return tetriminoes.size
     }
+
+    // Zwrócenie id kostki (pozycji)
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+
+    // Zwrócenie kostki z danej pozycji
     override fun getItem(position: Int): Any? {
         return tetriminoes[position]
     }

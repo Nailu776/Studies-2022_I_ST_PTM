@@ -10,6 +10,7 @@ import com.example.tetris.player.Player
 
 class RankingAdapter: RecyclerView.Adapter<RankingAdapter.MyViewHolder>()  {
 
+    // Lista graczy
     private var playersList = emptyList<Player>()
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -17,10 +18,12 @@ class RankingAdapter: RecyclerView.Adapter<RankingAdapter.MyViewHolder>()  {
         var nickView: TextView = itemView.findViewById(R.id.rank_nick)
         var hsView: TextView = itemView.findViewById(R.id.rank_hs)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(
             R.layout.ranking_row, parent, false))
     }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = playersList[position]
         holder.nickView.text = currentItem.nick
@@ -28,8 +31,9 @@ class RankingAdapter: RecyclerView.Adapter<RankingAdapter.MyViewHolder>()  {
         holder.rankView.text = (position + 1).toString()
     }
 
-    fun setData(player: List<Player>){
-        this.playersList = player
+    // Ustawienie nowej posortowanej listy graczy
+    fun setData(players: List<Player>){
+        this.playersList = players
         notifyDataSetChanged()
     }
 
@@ -40,7 +44,5 @@ class RankingAdapter: RecyclerView.Adapter<RankingAdapter.MyViewHolder>()  {
     override fun getItemId(position: Int): Long{
         return position.toLong()
     }
-
-
 
 }

@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tetris">
-        <activity android:name=".VersusGameActivity"></activity>
-        <activity android:name=".RankingActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".TetrisSoloGameActivity" />
-        <activity android:name=".MainActivity">
+        <!--        Orientacja każdej aktywności == pionowa
+        (nie wymyślamy "koła" (tetris) na nowo)-->
+        <activity android:name=".VersusGameActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".RankingActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".TetrisSoloGameActivity"
+                  android:screenOrientation="portrait"  />
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

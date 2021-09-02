@@ -21,21 +21,26 @@ class RankingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        // Inflate
+
+        // Inflate view fragment_ranking layout
         val view = inflater.inflate(R.layout.fragment_ranking, container,false)
-        // Set the adapter
+
+        // Set the adapter to RankingAdapter
         val mAdapter = RankingAdapter()
 
+        // Recycler View ranking_list
         val recyclerView = view.findViewById<RecyclerView>(R.id.ranking_list)
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Player view model
+        // Get Player view model and observe every time database change
+        // Set new sorted data to ranking
         mPlayerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
-        mPlayerViewModel.readAllData.observe(viewLifecycleOwner, Observer { player ->
-            val sortedData = player.sortedByDescending { it.highScore }
+        mPlayerViewModel.readAllData.observe(viewLifecycleOwner, Observer { players ->
+            val sortedData = players.sortedByDescending { it.highScore }
             mAdapter.setData(sortedData)
         })
+
         return view
     }
 

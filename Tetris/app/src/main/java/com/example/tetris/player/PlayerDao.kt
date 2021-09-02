@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
+// Data Access Object
 interface PlayerDao {
 
     // Add player
@@ -38,10 +39,4 @@ interface PlayerDao {
     @Query("SELECT high_score FROM player_table WHERE nick LIKE :nick")
     fun getHighScore(nick: String) : Int
 
-    // @Query("DELETE FROM player_table")
-    // fun deleteAll()
-    // może generować błędy
-    // lepiej:
-    // ttps://developer.android.com/reference/androidx/room/RoomDatabase#clearAllTables()
-    // clearAllTables ()
 }

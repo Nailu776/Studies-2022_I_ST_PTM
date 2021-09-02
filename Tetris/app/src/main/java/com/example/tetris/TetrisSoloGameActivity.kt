@@ -1,11 +1,8 @@
 package com.example.tetris
 
-import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.DisplayMetrics
 import android.view.View
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
@@ -18,21 +15,23 @@ import com.example.tetris.tetrimino.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.math.roundToInt
 
 open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
 
-
+    // Listy kwadratów
     private val tetriminoSquaresList = ArrayList<Tetrimino>()
     private val nextTetrimino = ArrayList<Tetrimino>()
 
+    // Ustawienia timera
     private var timeLeftInMs = Constants.START_TIME_IN_MS
     private var countDownTimer: CountDownTimer? = null
     private var countDownInterval = Constants.COUNT_DOWN_INITIAL_INTERVAL
     private var timerRunning: Boolean = false
+    // Flagi stanów
     private var bottom: Boolean = false
     private var playing: Boolean = false
     private var paused: Boolean = false
+    // Wynik aktualny, poziom oraz zmienne pomocnicze
     private var score: Int = 0
     private var currentLevel : Int = 0
     private var fullRows: Int = 0
@@ -74,8 +73,6 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         super.onCreate(savedInstanceState)
         // Ukryj UI żeby przypadkiem nie kliknąć cofnij podczas gry ;)
         hideSystemUI()
-        // Zmień layout w zależności od metryk ekranu
-        screenAdaptation()
         // Ustaw kontent
         setContentView(R.layout.activity_tetris_solo_game)
         // Znajdź wszystkie widoki
@@ -104,15 +101,6 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         }
     }
 
-    // Funkcja adaptuje się do density posiadanego ekranu
-    private fun screenAdaptation() {
-        // TODO
-        val dispMetr = DisplayMetrics()
-        val windowManager = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        windowManager.defaultDisplay.getMetrics(dispMetr)
-        val heightDP = (dispMetr.heightPixels / dispMetr.density) .roundToInt()
-        val widthDP = (dispMetr.widthPixels / dispMetr.density) .roundToInt()
-    }
 
     // Źródło : https://developer.android.com/training/system-ui/immersive
     // Funkcja ukrywająca UI systemu
@@ -390,6 +378,8 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         paused = true
         // wstrzymaj timer
         pauseTimer()
+        // Przywróć UI podczas pauzy by można było się cofnąć
+        showSystemUI()
     }
 
     // Funkcja wznawiająca gre
@@ -398,6 +388,8 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
         paused = false
         // wznów timer
         resumeTimer()
+        // Ukryj UI
+        hideSystemUI()
     }
 
     // Funkcja wyświetlająca następne Tetrimino

@@ -1,7 +1,5 @@
 package com.example.tetris
 
-import android.graphics.drawable.Drawable
-
 class Constants() {
     companion object{
         // Stałe do timera

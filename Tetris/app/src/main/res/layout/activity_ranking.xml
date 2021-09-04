@@ -5,5 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RankingActivity">
+    <TextView
+        android:id="@+id/ranking_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/menu_background_color"
+        android:gravity="center"
+        android:text="@string/ranking"
+        android:textColor="@color/dark_blue_sq"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment"/>
 
+    <fragment
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ranking_text"
+        app:navGraph="@navigation/my_nav"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

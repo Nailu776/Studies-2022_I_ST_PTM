@@ -30,4 +30,9 @@
     <string name="off">Off</string>
     <string name="disconnect">Disconnect</string>
 
+    <string name="enter_start_level_for_solo_game">Enter start level for solo game</string>
+    <string name="your_nick">Your nick</string>
+    <string name="enter_your_nick_below">Enter your nick below:</string>
+    <string name="from_0_to_18">from 0 to 18</string>
+    <string name="apply_changes">Apply Changes</string>
 </resources>

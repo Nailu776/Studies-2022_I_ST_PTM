@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             play_versus_button -> {
                 startActivity(
-                    Intent(this, VersusGameActivity::class.java))
+                    Intent(this, ConnectActivity::class.java))
             }
             settings_button -> {
                 startActivityForResult(

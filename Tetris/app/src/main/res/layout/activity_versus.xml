@@ -2,40 +2,318 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game_two"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tetris_background_color"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="256dp"
-        android:text="send"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    <!--    Górna część layoutu-->
+    <!--TODO kolor tytułu-->
+    <!-- Tytuł gry -->
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
-        android:text="TextView"
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:text="@string/title"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/game_gridV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
-        android:id="@+id/refresh"
+        android:id="@+id/startV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="refresh"
-        app:layout_constraintEnd_toEndOf="@+id/send"
-        app:layout_constraintStart_toStartOf="@+id/send"
-        app:layout_constraintTop_toBottomOf="@+id/send" />
+        android:gravity="center"
+        android:text="@string/start"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/green"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintTop_toBottomOf="@id/gameOverV"
+        app:layout_constraintEnd_toEndOf="@+id/game_gridV"
+        app:layout_constraintStart_toStartOf="@+id/game_gridV"
+        app:layout_constraintBottom_toBottomOf="@+id/game_gridV"/>
+    <!--[KONIEC]    Górna część layoutu-->
+
+    <!--    Środkowa część layoutu-->
+    <!--    Lewa część środkowej części-->
+    <!-- Siatka gry-->
+    <GridView
+        android:id="@+id/game_gridV"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/game_bg"
+        android:numColumns="10"
+        app:layout_constraintBottom_toTopOf="@id/leftV"
+        app:layout_constraintEnd_toStartOf="@id/next_tetrimino"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+    <!-- Napis końca gry-->
+    <TextView
+        android:id="@+id/gameOverV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
+        android:text="@string/game_over"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/startV"
+        app:layout_constraintEnd_toEndOf="@id/game_gridV"
+        app:layout_constraintStart_toStartOf="@id/game_gridV"
+        app:layout_constraintTop_toTopOf="@id/game_gridV" />
+    <!-- [KONIEC] Lewej części środkowej części-->
+
+    <!--    Prawa część środkowej części-->
+    <!--    Napis następne tetrimino-->
+    <TextView
+        android:id="@+id/next_tetrimino"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+
+        android:text="@string/next_tetrimino"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/next_tetrimino_disp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+    <!--    Wyświetlenie następnego tetrimino-->
+    <LinearLayout
+        android:id="@+id/next_tetrimino_disp"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_level"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/next_tetrimino">
+
+        <GridView
+            android:id="@+id/nextBlock_4V"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@color/orange_sq"
+            android:numColumns="4"
+            android:visibility="visible"/>
+
+        <GridView
+            android:id="@+id/nextBlock_5V"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/orange_sq"
+            android:numColumns="5"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+    <!-- Tekst "Level"-->
+    <TextView
+        android:id="@+id/txt_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/level"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_high_score"
+        app:layout_constraintEnd_toStartOf="@+id/levelV"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/next_tetrimino_disp" />
+    <!-- Tekst wyświetlający poziom-->
+    <TextView
+        android:id="@+id/levelV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/_0"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/txt_high_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txt_level"
+        app:layout_constraintTop_toBottomOf="@+id/next_tetrimino_disp" />
+    <!--    Tekst "High score"-->
+    <TextView
+        android:id="@+id/txt_high_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/high_score"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_total_score"
+        app:layout_constraintEnd_toStartOf="@+id/high_scoreV"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/txt_level" />
+    <!-- Wyświetlenie najwyższego wyniku-->
+    <TextView
+        android:id="@+id/high_scoreV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/_0"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/txt_total_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txt_high_score"
+        app:layout_constraintTop_toBottomOf="@+id/txt_level" />
+    <!--    Tekst aktualny wynik-->
+    <TextView
+        android:id="@+id/txt_total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/score"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/totalScoreV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/high_scoreV" />
+    <!--    Wyświetlenie aktualnego wyniku-->
+    <TextView
+        android:id="@+id/totalScoreV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/_0"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/p_r_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/txt_total_score" />
+
+    <!-- Kontener na pause i resume-->
+    <LinearLayout
+        android:id="@+id/p_r_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/leftV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/game_gridV"
+        app:layout_constraintTop_toBottomOf="@+id/totalScoreV">
+        <!-- Wznowienie gry-->
+        <ImageView
+            android:id="@+id/resumeV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/resume_button"
+            android:src="@drawable/ic_baseline_play_circle_outline_24"
+            android:visibility="gone" />
+        <!-- Wstrzymanie gry-->
+        <ImageView
+            android:id="@+id/pauseV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/pause_button"
+            android:src="@drawable/ic_baseline_pause_circle_outline_24"
+            android:visibility="visible" />
+    </LinearLayout>
+
+
+    <!-- [KONIEC] Prawej części środkowej części   -->
+
+    <!--  Dolna część layoutu  -->
+    <ImageView
+        android:id="@+id/leftV"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+        android:contentDescription="@android:string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_gridV"
+        app:layout_constraintEnd_toStartOf="@+id/downV"/>
+    <ImageView
+        android:id="@+id/downV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_baseline_arrow_downward_24"
+        android:contentDescription="@android:string/ok"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leftV"
+        app:layout_constraintTop_toBottomOf="@+id/game_gridV"
+        app:layout_constraintEnd_toStartOf="@+id/rightV"/>
+    <ImageView
+        android:id="@+id/rightV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_baseline_keyboard_arrow_right_24"
+        android:contentDescription="@android:string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/downV"
+        app:layout_constraintTop_toBottomOf="@+id/game_gridV"
+        app:layout_constraintEnd_toStartOf="@+id/rotateV" />
+    <ImageView
+        android:id="@+id/rotateV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_baseline_refresh_24"
+        android:contentDescription="@android:string/ok"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rightV"
+        app:layout_constraintTop_toBottomOf="@+id/game_gridV"
+        app:layout_constraintEnd_toEndOf="parent"  />
+    <!-- [KONIEC] Dolnej części   -->
 </androidx.constraintlayout.widget.ConstraintLayout>

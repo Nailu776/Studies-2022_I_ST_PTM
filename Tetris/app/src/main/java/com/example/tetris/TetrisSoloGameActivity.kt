@@ -212,7 +212,7 @@ open class TetrisSoloGameActivity : AppCompatActivity(), View.OnClickListener{
     private fun findAllViewsById(){
         start = findViewById(R.id.start)
         gameGridView = findViewById(R.id.game_grid)
-        leftMoveView = findViewById(R.id.left)
+        leftMoveView = findViewById(R.id.leftV)
         downMoveView = findViewById(R.id.down)
         rightMoveView = findViewById(R.id.right)
         rotateMoveView = findViewById(R.id.rotate)

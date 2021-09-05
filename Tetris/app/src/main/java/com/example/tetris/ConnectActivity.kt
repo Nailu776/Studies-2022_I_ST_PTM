@@ -106,7 +106,7 @@ class ConnectActivity : AppCompatActivity() {
         printWriter = PrintWriter(SocketHandler.socket!!.getOutputStream(), true)
         while (scanner.hasNextLine()) {
             val move = scanner.nextLine()
-            Log.i("move", move)
+//            Log.i("move", move)
             SocketHandler.read = move
         }
     }

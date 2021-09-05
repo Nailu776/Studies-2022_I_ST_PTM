@@ -63,7 +63,7 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/game_bg"
         android:numColumns="10"
-        app:layout_constraintBottom_toTopOf="@id/left"
+        app:layout_constraintBottom_toTopOf="@id/leftV"
         app:layout_constraintEnd_toStartOf="@id/next_tetrimino"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +247,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/left"
+        app:layout_constraintBottom_toTopOf="@+id/leftV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/game_grid"
         app:layout_constraintTop_toBottomOf="@+id/totalScore">
@@ -274,7 +274,7 @@
 
 <!--  Dolna część layoutu  -->
     <ImageView
-        android:id="@+id/left"
+        android:id="@+id/leftV"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
@@ -291,7 +291,7 @@
         android:contentDescription="@android:string/ok"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintStart_toEndOf="@+id/leftV"
         app:layout_constraintTop_toBottomOf="@+id/game_grid"
         app:layout_constraintEnd_toStartOf="@+id/right"/>
     <ImageView

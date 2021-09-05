@@ -101,17 +101,13 @@ open class VersusActivityExample : AppCompatActivity(), View.OnClickListener{
     }
 
     fun receive(){
-        if(ConnectActivity.socket != null){
-            val scanner = Scanner(ConnectActivity.socket!!.getInputStream())
+
+            val scanner = Scanner(SocketHandler.socket!!.getInputStream())
             while(scanner.hasNextLine()){
                 val read = scanner.nextLine()
                 findViewById<TextView>(R.id.textView).text = read
                 junkRows(read.toInt())
             }
-        }
-        else{
-            Toast.makeText(this, "Socket is null", Toast.LENGTH_SHORT).show()
-        }
 
     }
 
@@ -143,7 +139,7 @@ open class VersusActivityExample : AppCompatActivity(), View.OnClickListener{
     }
 
     fun send(message: Int){
-        ConnectActivity.socket!!.getOutputStream().write(message)
+        SocketHandler.socket!!.getOutputStream().write(message)
     }
 
     // Źródło : https://developer.android.com/training/system-ui/immersive

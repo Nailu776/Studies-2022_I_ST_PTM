@@ -13,6 +13,7 @@ import java.io.PrintWriter
 import java.net.Socket
 import java.net.SocketException
 import java.util.*
+import java.util.concurrent.Executors
 
 
 class VersusActivity: AppCompatActivity(){
@@ -43,13 +44,12 @@ class VersusActivity: AppCompatActivity(){
     }
 
     fun send(){
-        try{
-            SocketHandler.socket!!.getOutputStream().write("halo".toByteArray())
+        printWriter = PrintWriter(SocketHandler.socket!!.getOutputStream(), true)
+        printWriter.let{
+            Executors.newSingleThreadExecutor().execute {
+                it.println(2137)
+            }
         }
-        catch(e: SocketException){
-            e.stackTrace
-        }
-//        SocketHandler.socket!!.getOutputStream().write("Sending a message".toByteArray())
     }
 
 

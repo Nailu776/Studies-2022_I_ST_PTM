@@ -1,5 +1,7 @@
 package com.example.tetris
 
+import android.content.Intent
+import android.net.IpPrefix
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -8,16 +10,21 @@ import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.find
 import org.w3c.dom.Text
 import java.io.PrintWriter
+import java.net.Socket
+import java.net.SocketException
 import java.util.*
 
 
 class VersusActivity: AppCompatActivity(){
 
-    var printWriter: PrintWriter? = null
+    lateinit var printWriter: PrintWriter
+    var port = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_versus)
+
+        printWriter = PrintWriter(SocketHandler.socket!!.getOutputStream(),true)
 
         findViewById<Button>(R.id.send).setOnClickListener{send()}
         findViewById<Button>(R.id.refresh).setOnClickListener{receive()}
@@ -25,22 +32,24 @@ class VersusActivity: AppCompatActivity(){
     }
 
     fun receive(){
-        if(ConnectActivity.socket != null){
-            val scanner = Scanner(ConnectActivity.socket!!.getInputStream())
+            val scanner = Scanner(SocketHandler.socket!!.getInputStream())
             while(scanner.hasNextLine()){
                 val read = scanner.nextLine()
                 findViewById<TextView>(R.id.textView).text = read
             }
-        }
-        else{
-            Toast.makeText(this, "Socket is null", Toast.LENGTH_SHORT).show()
-        }
+
         findViewById<TextView>(R.id.textView).invalidate()
 
     }
 
     fun send(){
-        ConnectActivity.socket!!.getOutputStream().write("Sending a message".toByteArray())
+        try{
+            SocketHandler.socket!!.getOutputStream().write("halo".toByteArray())
+        }
+        catch(e: SocketException){
+            e.stackTrace
+        }
+//        SocketHandler.socket!!.getOutputStream().write("Sending a message".toByteArray())
     }
 
 

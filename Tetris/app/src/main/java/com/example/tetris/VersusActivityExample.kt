@@ -116,10 +116,29 @@ open class VersusActivityExample : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun junkRows( number: Int) {
-      for(i in 1..number){
 
-      }
-
+        // sprawdzenie, czy dolne wiersze nie kończą gry
+          for(i in 0..(10*number-1)){
+            if(!tetriminoSquaresList[i].equals("")){
+                playing = false
+                paused = false
+                sendNewTetrimino()
+                return
+            }
+          }
+        //przesuwanie pozostałych wierszy w górę
+        for(i in (10*number)..199){
+            tetriminoSquaresList[i-10] = tetriminoSquaresList[i]
+        }
+        //dodawanie junk rows
+        val well = (0..9).random()
+        var junkTetrimino = Tetrimino()
+        junkTetrimino.name = "X"
+        for(i in 1..number){
+            for(j in (200-10*number)..199){
+                tetriminoSquaresList[j] = junkTetrimino
+            }
+        }
 
     }
 
@@ -383,6 +402,7 @@ open class VersusActivityExample : AppCompatActivity(), View.OnClickListener{
         cancelTimer()
         // Spróbuj wysłać nowe Tetrimino
         sendNewTetrimino()
+        receive()
     }
 
     // Funkcja wysyłająca nowe Tetrimino

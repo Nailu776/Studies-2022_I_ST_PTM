@@ -15,7 +15,8 @@ class Constants() {
                 R.drawable.square_light_blue,   // "O"
                 R.drawable.square_blue,         // "S"
                 R.drawable.square_gray,         // "T"
-                R.drawable.square_green         // "Z"
+                R.drawable.square_green,         // "Z"
+                R.drawable.square_black         // "X" - junk piece
         )
     }
 }

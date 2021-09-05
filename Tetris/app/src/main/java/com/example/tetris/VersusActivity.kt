@@ -139,8 +139,6 @@ class VersusActivity: AppCompatActivity(), View.OnClickListener{
         Log.i("Rows sent: ", number.toString())
         // sprawdzenie, czy dolne wiersze nie kończą gry
         for(i in 0..((10*number)-1)){
-            Log.i("test","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            Log.i("tetromino", tetriminoSquaresList[i].name)
             if(!tetriminoSquaresList[i].name.equals("")){
                 playing = false
                 paused = false
@@ -148,17 +146,22 @@ class VersusActivity: AppCompatActivity(), View.OnClickListener{
             }
         }
         //przesuwanie pozostałych wierszy w górę
-        for(i in (10*number)..199){
-            tetriminoSquaresList[i-10].name = tetriminoSquaresList[i].name
+        for(i in 0 until 199 - 10*number){
+            tetriminoSquaresList[i].name = tetriminoSquaresList[i+10*number].name
+            tetriminoSquaresList[i].mid = i
+            tetriminoSquaresList[i+10*number].mid = 0
+
         }
         //dodawanie junk rows
         val well = (0..9).random()
-        val junkTetrimino = Tetrimino()
-        junkTetrimino.name = "X"
         for(i in 1..number){
             for(j in (200-10*number)..199){
                 if((j % 10) != well){
-                    tetriminoSquaresList[j] = junkTetrimino
+                    tetriminoSquaresList[j].name = "X"
+                    tetriminoSquaresList[j].mid = j
+                }
+                else{
+                    tetriminoSquaresList[j].name = ""
                 }
             }
         }

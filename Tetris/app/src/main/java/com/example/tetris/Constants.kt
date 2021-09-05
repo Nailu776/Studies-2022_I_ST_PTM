@@ -7,7 +7,7 @@ class Constants() {
         val COUNT_DOWN_INITIAL_INTERVAL = 1000L
         // Schemat kwadracika
         val TEMP_SQUARE = R.layout.temp_sq
-        // Tablica stałych kolorów Tetrimino
+        // Tablica stałych kolorów- Tetrimino
         var TABLE_OF_SQUARES : IntArray = intArrayOf(
                 R.drawable.square_red,          // "I"
                 R.drawable.square_purple,       // "J"

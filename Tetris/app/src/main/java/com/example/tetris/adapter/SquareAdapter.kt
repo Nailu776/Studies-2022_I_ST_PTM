@@ -64,6 +64,9 @@ class SquareAdapter(private val context: Context, tetriminoList: ArrayList<Tetri
                     "Z" -> {
                         background.setBackgroundResource(Constants.TABLE_OF_SQUARES[6])
                     }
+                    "X" -> {
+                        background.setBackgroundResource(Constants.TABLE_OF_SQUARES[7])
+                    }
                 }
             }
         }

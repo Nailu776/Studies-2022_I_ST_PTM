@@ -41,7 +41,6 @@ class ConnectActivity : AppCompatActivity() {
         connectButton = findViewById<Button>(R.id.connect)
         IPButton = findViewById<Button>(R.id.SetIp)
         proceed = findViewById<Button>(R.id.proceed)
-        sendMove = findViewById<Button>(R.id.button2)
         fun showdialog(){
             val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Podaj adres IP")
@@ -92,9 +91,7 @@ class ConnectActivity : AppCompatActivity() {
                 }
             }
         }
-        sendMove.setOnClickListener{
-            sendMove()
-        }
+
         proceed.setOnClickListener{startActivity(Intent(this, VersusActivity::class.java))
         }
 
@@ -111,13 +108,6 @@ class ConnectActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendMove(){
-        printWriter?.let{
-            Executors.newSingleThreadExecutor().execute {
-                it.println(2137)
-            }
-        }
-    }
 
 }
 object SocketHandler {

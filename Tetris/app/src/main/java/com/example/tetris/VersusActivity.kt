@@ -1,9 +1,11 @@
 package com.example.tetris
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.anko.find
 import org.w3c.dom.Text
 import java.io.PrintWriter
 import java.util.*
@@ -16,6 +18,9 @@ class VersusActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_versus)
+
+        findViewById<Button>(R.id.send).setOnClickListener{send()}
+        findViewById<Button>(R.id.refresh).setOnClickListener{receive()}
 
     }
 
@@ -30,6 +35,7 @@ class VersusActivity: AppCompatActivity(){
         else{
             Toast.makeText(this, "Socket is null", Toast.LENGTH_SHORT).show()
         }
+        findViewById<TextView>(R.id.textView).invalidate()
 
     }
 
